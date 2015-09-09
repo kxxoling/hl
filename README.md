@@ -1,63 +1,59 @@
 hl
 =====
 
-Haskell.org web site.
+从 Haskell.org 官网 fork 而来。
 
-## Editing pages
+## 如何修改页面
 
-If you're just here to contribute a content change, read this section.
+如果你想要贡献内容请首先阅读以下内容。
 
 All pages that are produced by markdown
-[are here](https://github.com/haskell-infra/hl/tree/master/static/markdown). To
-contribute changes simply fork this repo and open a pull request. It
-will be merged and redeployed in short order.
+所有页面都由[这里的 Markdown 文档](https://github.com/haskell-infra/hl/tree/master/static/markdown)生成。
+贡献新内容首先需要 fork 这个项目并发起 Pull Request，如果合适的的话将会在短时间内合并重新部署。
 
-If you want to edit a page which has some custom code in it, you'll
-want to see the next sections for building and running
-instructions. Maybe also take a look at [architecture](#architecture).
+如果你的提交中含有定制代码，那可能需要等到下一个构建执行才可能生效。也许你需要看一下先看一下[架构设计](#architecture)。
 
-If you want to include Haskell code samples in markdown, use:
+如果你想要在 Markdown 中插入 Haskell 代码，可以这样写：
 
     ``` haskell
     main = putStrLn "Hello, World!"
     ```
 
-If you want to include Haskell code samples in Haskell code pages,
-use:
+如果你想要在 Haskell 页面中插入示例代码可以这样写：
 
 ``` haskell
 haskellPre "main = print 123"
 haskellCode "peyton `simon` jones"
 ```
 
-Pre for `<pre>` block, code for `<code>` span snippet.
+Pre 代表 `<pre>` HTML 块，Code 指 `<code>` 标签片段。
 
-## Building
+## 如何构建
 
-Clone the repo:
+clone 项目代码：
 
     $ git clone git@github.com:haskell-infra/hl.git
 
-Set up sandbox:
+搭建沙盒环境：
 
     $ cabal sandbox init
 
-Install dependencies and build:
+安装依赖并构建：
 
     $ cabal install --only-dependencies
     $ cabal build
 
-Done!
+大功告成！
 
-## Running
+## 本地运行
 
-It runs at: http://localhost:1990/
+启动路径 http://localhost:1990/。
 
-Manually running the binary:
+手动运行二进制程序：
 
     $ dist/build/hl/hl
 
-Running from inside GHCi:
+在 GHCi 中运行：
 
     > :l DevelMain
     > DevelMain.update
@@ -65,29 +61,24 @@ Running from inside GHCi:
 Run this every time you want to update the web handler in-place, as in
 [this demo](https://github.com/chrisdone/ghci-reload-demo).
 
-If you use Emacs, you can just bind it to a key:
+如果你使用 Emacs，可以这样绑定快捷键：
 
 ``` lisp
 (define-key html-mode-map [f12] 'haskell-process-reload-devel-main)
 ```
 
-Just hit f12 to recompile and restart.
+按下 f12 即可构建并重新启动。
 
-## Architecture
+## 架构设计
 
-It uses Yesod and an MVC organization.
+这个项目结构组织遵守 Yesod 和 MVC 模式。
 
-* HL.Model.* -- [models](https://github.com/haskell-infra/hl/tree/master/src/HL/Model)
-* HL.View.* -- [views](https://github.com/haskell-infra/hl/tree/master/src/HL/View)
-* HL.Controller.* -- [controllers](https://github.com/haskell-infra/hl/tree/master/src/HL/Controller)
+* HL.Model.\* -- [models](https://github.com/haskell-infra/hl/tree/master/src/HL/Model)
+* HL.View.\* -- [views](https://github.com/haskell-infra/hl/tree/master/src/HL/View)
+* HL.Controller.\* -- [controllers](https://github.com/haskell-infra/hl/tree/master/src/HL/Controller)
 
-Templates are written in
-[Lucid](https://github.com/chrisdone/lucid). There is presently no
-database.
+模板使用了 [Lucid](https://github.com/chrisdone/lucid)，现在并不依赖数据库。
 
-## Style
+## 样式规范
 
-We generally use
-[this style](https://github.com/chrisdone/haskell-style-guide)
-for this project. You don't have to use this style, we can reformat patches as
-they come in.
+本项目代码遵照[这个规范](https://github.com/chrisdone/haskell-style-guide)，但是并不要求你遵守这个规范，我们会在接收到补丁后将其规范化。
