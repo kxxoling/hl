@@ -1,7 +1,1 @@
-Haskell is an advanced purely-functional programming language. An
-open-source product of more than twenty years of cutting-edge
-research, it allows rapid development of robust, concise, correct
-software. With strong support for integration with other languages,
-built-in concurrency and parallelism, debuggers, profilers, rich
-libraries and an active community, Haskell makes it easier to produce
-flexible, maintainable, high-quality software.
+Haskell 是一个纯函数式的高级编程语言，是一个拥有 20 年前沿研究历史的开源项目。使用它，可以快速开发出健壮、简介、正确的程序。它还提供了强大的和其它语言集成的能力、内置的并发和并行处理、调试器、性能分析器、丰富的代码库，以及一个活跃的社区。使用 Haskell 可以更容易地开发出灵活、可维护、高质量的程序。
